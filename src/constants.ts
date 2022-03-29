@@ -3,6 +3,8 @@ export type TResponse = {
   errorCode?: number;
   code?: number;
   dataKey?: string;
+  type?: string;
+  errorType?: string;
 };
 
 type T_MAP_ERROR_BY_TYPE = {
@@ -28,31 +30,38 @@ const MAP_ERROR_TYPES = {
 const MAP_ERROR_BY_TYPE: T_MAP_ERROR_BY_TYPE = {
   [MAP_ERROR_TYPES.DEFAULT]: {
     errorCode: 500,
-    message: 'Internal Server Error'
+    message: 'Internal Server Error',
+    errorType: MAP_ERROR_TYPES.DEFAULT
   },
   [MAP_ERROR_TYPES.N_TERM_NOT_INTEGER]: {
     errorCode: 400,
-    message: 'N term is not an integer'
+    message: 'N term is not an integer',
+    errorType: MAP_ERROR_TYPES.N_TERM_NOT_INTEGER
   },
   [MAP_ERROR_TYPES.N_TERM_NEGATIVE]: {
     errorCode: 400,
-    message: 'N term is negative'
+    message: 'N term is negative',
+    errorType: MAP_ERROR_TYPES.N_TERM_NEGATIVE
   },
   [MAP_ERROR_TYPES.RESOURCE_NOT_FOUND]: {
     errorCode: 404,
-    message: 'Resource not found'
+    message: 'Resource not found',
+    errorType: MAP_ERROR_TYPES.RESOURCE_NOT_FOUND
   }
 };
 
 const MAP_SUCCESS_BY_TYPE: T_MAP_SUCCESS_BY_TYPE = {
   [MAP_SUCCESS_TYPES.DEFAULT]: {
     code: 200,
-    message: 'Operation executed correctly'
+    message: 'Operation executed correctly',
+    type: MAP_SUCCESS_TYPES.DEFAULT,
+    dataKey: 'default'
   },
   [MAP_SUCCESS_TYPES.FIBONACCI_CALCULATED]: {
     code: 200,
     message: 'N term of fibonacci series calculated',
-    dataKey: 'nTerm'
+    dataKey: 'nTerm',
+    type: MAP_SUCCESS_TYPES.FIBONACCI_CALCULATED
   }
 };
 

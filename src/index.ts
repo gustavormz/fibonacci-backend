@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import fibonacciRoute from './route/fibonacci';
 import defaultRoute from './route/default';
@@ -13,6 +14,8 @@ const routeFibonacciResource = process.env.ROUTE_FIBONACCI_RESOURCE;
 const routeDefaultResource = process.env.ROUTE_DEFAULT_RESOURCE;
 
 const app = express();
+
+app.use(cors());
 
 app.use(`${apiBasePath}/${routeFibonacciResource}`, fibonacciRoute);
 

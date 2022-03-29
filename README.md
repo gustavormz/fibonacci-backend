@@ -1,7 +1,7 @@
 # fibonacci-backend
 API to calculate the n term into fibonacci succession.
 
-# HOW TO RUN THE PROJECT
+## HOW TO RUN THE PROJECT
 
 1. Clone the repositoy.
 2. Create **.env** file and set your enviroment variables.

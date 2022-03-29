@@ -24,7 +24,8 @@ const MAP_ERROR_TYPES = {
   DEFAULT: 'DEFAULT',
   N_TERM_NOT_INTEGER: 'N_TERM_NOT_INTEGER',
   N_TERM_NEGATIVE: 'N_TERM_NEGATIVE',
-  RESOURCE_NOT_FOUND: 'RESOURCE_NOT_FOUND'
+  RESOURCE_NOT_FOUND: 'RESOURCE_NOT_FOUND',
+  RESULT_OVERFLOW: 'RESULT_OVERFLOW'
 };
 
 const MAP_ERROR_BY_TYPE: T_MAP_ERROR_BY_TYPE = {
@@ -47,6 +48,11 @@ const MAP_ERROR_BY_TYPE: T_MAP_ERROR_BY_TYPE = {
     errorCode: 404,
     message: 'Resource not found',
     errorType: MAP_ERROR_TYPES.RESOURCE_NOT_FOUND
+  },
+  [MAP_ERROR_TYPES.RESULT_OVERFLOW]: {
+    errorCode: 400,
+    message: 'The calculated value is overflow; try with a number less than 79',
+    errorType: MAP_ERROR_TYPES.RESULT_OVERFLOW
   }
 };
 

@@ -13,7 +13,12 @@ import {
 
 const router = Router();
 
-router.get('/', (req, res) => {
+export const defaultPath = (
+  req: object,
+  res: {
+    status: Function
+  }
+) => {
   let response;
   try {
     constructCustomErrorByType({
@@ -23,9 +28,18 @@ router.get('/', (req, res) => {
     response = constructErrorResponse(error);
   }
   return res.status(response.statusCode).send(response);
-});
+};
 
-router.get('/:nTerm', (req, res) => {
+export const pathParameterPath = (
+  req: {
+    params: {
+      nTerm: string
+    }
+  },
+  res: {
+    status: Function
+  }
+) => {
   let response;
   try {
     const result: number = controller(req.params);
@@ -38,6 +52,10 @@ router.get('/:nTerm', (req, res) => {
     response = constructErrorResponse(error);
   }
   return res.status(response.statusCode).send(response);
-});
+};
+
+router.get('/', defaultPath);
+
+router.get('/:nTerm', pathParameterPath);
 
 export default router;

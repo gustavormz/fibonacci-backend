@@ -10,7 +10,12 @@ import {
 
 const router = Router();
 
-router.get('*', (req, res) => {
+export const defaultPath = (
+  req: object,
+  res: {
+    status: Function
+  }
+) => {
   let response;
   try {
     constructCustomErrorByType({
@@ -20,6 +25,8 @@ router.get('*', (req, res) => {
     response = constructErrorResponse(error);
   }
   return res.status(response.statusCode).send(response);
-});
+}
+
+router.get('*', defaultPath);
 
 export default router;

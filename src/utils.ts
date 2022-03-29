@@ -4,14 +4,14 @@ import {
   TResponse
 } from './constants';
 
-type TApiResponseError = {
+export type TApiResponseError = {
   statusCode: number;
   errorType: string;
   message: string;
   error: boolean;
 };
 
-type TApiResponseSuccess = {
+export type TApiResponseSuccess = {
   statusCode: number;
   type: string;
   message: string;
@@ -49,13 +49,14 @@ const constructErrorResponse = ({
 }) : TApiResponseError => {
   const {
     errorCode: statusCode,
-    message
+    message,
+    errorType
   }: TResponse = getErrorObjectByType(_type);
 
   return {
     statusCode,
-    errorType: _type,
-    message: message || _message,
+    errorType,
+    message: _message || message,
     error: true
   };
 };
@@ -65,12 +66,13 @@ const constructSuccessResponse = ({
   _data
 }: {
   _type: string,
-  _data: number
+  _data?: number
 }): TApiResponseSuccess => {
   const {
     code: statusCode,
     message,
-    dataKey
+    dataKey,
+    type
   }: TResponse = getSuccessObjectByType(_type);
 
   return {
@@ -80,7 +82,7 @@ const constructSuccessResponse = ({
     },
     message,
     error: false,
-    type: _type
+    type
   };
 };
 
